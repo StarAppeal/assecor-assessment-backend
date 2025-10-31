@@ -1,0 +1,13 @@
+.vs/
+src/PersonenManagement.API/bin/
+src/PersonenManagement.API/obj/
+src/PersonenManagement.Application/bin/
+src/PersonenManagement.Application/obj/
+src/PersonenManagement.Domain/bin/
+src/PersonenManagement.Domain/obj/
+src/PersonenManagement.Infrastructure/bin/
+src/PersonenManagement.Infrastructure/obj/
+tests/PersonenManagement.IntegrationTests/bin/
+tests/PersonenManagement.IntegrationTests/obj/
+tests/PersonenManagement.UnitTests/bin/
+tests/PersonenManagement.UnitTests/obj/
