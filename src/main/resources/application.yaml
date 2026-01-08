@@ -1,10 +1,12 @@
 spring:
   application:
-    name: persons
-  profiles:
-    active: mongo
+    name: persons-service
 
+  docker:
+    compose:
+      enabled: false
 initial:
   data:
     csv:
        path: classpath:sample-input.csv
+
