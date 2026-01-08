@@ -1,0 +1,9 @@
+services:
+  mongodb:
+    image: 'mongo:latest'
+    environment:
+      - 'MONGO_INITDB_DATABASE=persons'
+      - 'MONGO_INITDB_ROOT_PASSWORD=cool_password'
+      - 'MONGO_INITDB_ROOT_USERNAME=root'
+    ports:
+      - '27017'

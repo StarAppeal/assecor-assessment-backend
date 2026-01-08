@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: persons
+  profiles:
+    active: mongo
+
+initial:
+  data:
+    csv:
+       path: classpath:sample-input.csv

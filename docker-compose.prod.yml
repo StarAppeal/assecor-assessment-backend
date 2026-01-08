@@ -1,0 +1,41 @@
+services:
+  app:
+    image: ${DOCKER_IMAGE}
+    container_name: assecor-backend
+    ports:
+      - "${APP_PORT}:8080"
+    environment:
+      - SPRING_MONGODB_HOST=mongodb
+      - SPRING_MONGODB_PORT=27017
+      - SPRING_MONGODB_DATABASE=${MONGO_DATABASE}
+      - SPRING_MONGODB_USERNAME=${MONGO_ROOT_USER}
+      - SPRING_MONGODB_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - SPRING_MONGODB_AUTHENTICATION_DATABASE=admin
+      - SPRING_PROFILES_ACTIVE=${ACTIVE_PROFILE]
+      - SPRING_DOCKER_COMPOSE_ENABLED=false
+      - INITIAL_DATA_CSV_PATH=file:/app/data/input.csv
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    volumes:
+      - ${CSV_FILE_PATH}:/app/data/input.csv
+    restart: always
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-server
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+volumes:
+  mongo-data:
