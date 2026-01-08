@@ -1,3 +1,62 @@
+# Getting Started
+
+## Mit Docker (Empfohlen)
+
+1. **CSV-Datei herunterladen** (falls keine eigene vorhanden):
+   ```bash
+   wget -O input.csv https://raw.githubusercontent.com/StarAppeal/assecor-assessment-backend/refs/heads/master/sample-input.csv
+   ```
+
+2. **Umgebungsvariablen konfigurieren**:
+   ```bash
+   wget -O .env https://raw.githubusercontent.com/StarAppeal/assecor-assessment-backend/refs/heads/master/.env.example
+   ```
+   Passe die Werte nach Bedarf an (z.B. mit `vim` oder `nano`):
+   - `DOCKER_IMAGE=docker.io/starappeal/assecor-backend:latest` (öffentlich auf Docker Hub)
+   - `ACTIVE_PROFILE=mongo` → MongoDB als Datenquelle
+   - `ACTIVE_PROFILE=<beliebig>` → In-Memory Datenquelle
+
+3. **Docker Compose Datei herunterladen**:
+   ```bash
+   wget -O docker-compose.yml https://raw.githubusercontent.com/StarAppeal/assecor-assessment-backend/refs/heads/master/docker-compose.prod.yml
+   ```
+
+4. **Anwendung starten**:
+   ```bash
+   docker compose up -d --build
+   ```
+
+## Lokale Entwicklung
+
+1. **Repository klonen**
+
+2. **Anwendung bauen**:
+   ```bash
+   ./mvnw clean package
+   ```
+
+3. **Anwendung starten**:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+   Oder über die IDE starten.
+
+### Profil-Konfiguration
+
+Die `.env`-Datei wird beim lokalen Ausführen ignoriert. Verwende stattdessen Command-Line-Argumente:
+
+```bash
+# Mit MongoDB
+./mvnw spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=mongo"
+
+# Mit In-Memory (Standard, kein Argument nötig)
+./mvnw spring-boot:run
+```
+
+> **Hinweis:** Bei Verwendung des `mongo`-Profils startet Spring Boot Compose automatisch den MongoDB-Container.
+
+---
+
 # Assecor Assessment Test (DE)
 
 ## Zielsetzung
