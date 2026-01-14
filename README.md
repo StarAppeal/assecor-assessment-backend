@@ -53,7 +53,7 @@ Die `.env`-Datei wird beim lokalen Ausführen ignoriert. Verwende stattdessen Co
 ./mvnw spring-boot:run
 ```
 
-> **Hinweis:** Bei Verwendung des `mongo`-Profils startet Spring Boot Compose automatisch den MongoDB-Container.
+> **Hinweis:** Bei Verwendung des `mongo`-Profils startet Spring Boot Compose automatisch den MongoDB-Container. Java Version 21 ist vorrausgesetzt. 
 
 ---
 
@@ -224,3 +224,4 @@ the return content type is `application/json`. The interface should offer the fo
 * Add a secondary data source (e.g. database via EF or JPA)
 
 Think about your potential future colleagues, and do not make it too easy for them by posting your solution publicly. Thank you!
+
